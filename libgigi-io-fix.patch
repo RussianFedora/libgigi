@@ -1,0 +1,11 @@
+diff -uNdr GG.original/src/GIL/extension/io/io_error.hpp GG/src/GIL/extension/io/io_error.hpp
+--- GG.original/src/GIL/extension/io/io_error.hpp	2011-07-26 21:42:28.000000000 +0400
++++ GG/src/GIL/extension/io/io_error.hpp	2011-07-27 13:42:12.178101268 +0400
+@@ -21,6 +21,7 @@
+ #include <ios>
+ #include "../../gil_config.hpp"
+ #include <boost/shared_ptr.hpp>
++#include <stdio.h>
+ 
+ namespace boost { namespace gil {
+ 
