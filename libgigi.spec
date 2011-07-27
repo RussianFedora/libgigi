@@ -1,6 +1,6 @@
 Name:           libgigi
 Version:        0.8.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GiGi (aka GG) is a C++ OpenGL GUI library.
 
 License:        LGPL
@@ -8,11 +8,10 @@ URL:            http://gigi.sourceforge.net/
 Source0:        %{name}-%{version}.tar.bz2
 Patch1:         libgigi-compile-fix.patch
 Patch2:         libgigi-io-fix.patch
-#Patch3:         libgigi-cmake-oldfiles-fix.patch
 
 BuildRequires:  boost-devel SDL-devel doxygen ogre-devel libtiff-devel
 BuildRequires:  freetype-devel libstdc++-devel gcc-c++ glibc-headers glibc-devel
-BuildRequires:  ois-devel
+BuildRequires:  ois-devel DevIL-devel libpng-devel libjpeg-devel
 
 %package devel
 Requires:       %{name} = %{version}
@@ -64,12 +63,9 @@ Development files for libgigi(GiGi/GG) Ogre plugin
 %setup -q
 %patch1 -p1 -b .fix-compile-errors
 %patch2 -p1 -b .io-fix-error
-#%patch3 -p1 -b .cmake-oldfiles-fix
 
 %build
 %cmake .
-#-DBUILD_RELEASE:BOOL=ON 
-#-DBUILD_EXPERIMENTAL_EVE_SUPPORT:BOOL=OFF -DBUILD_DOCUMENTATION:BOOL=ON -DBUILD_OGRE_DRIVER:BOOL=ON . 
 make %{?_smp_mflags}
 
 %install
@@ -107,5 +103,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/GiGiOgre.pc
 
 %changelog
+* Thu Jul 28 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-2
+- added missing build requires (libpng, DevIL, libjpeg)
 * Wed Jul 27 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-1
 - Initial build
