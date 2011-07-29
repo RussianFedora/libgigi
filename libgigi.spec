@@ -1,6 +1,6 @@
 Name:           libgigi
 Version:        0.8.0
-Release:        2%{?dist}
+Release:        2%{?dist}.R
 Summary:        GiGi (aka GG) is a C++ OpenGL GUI library.
 
 License:        LGPL
@@ -103,7 +103,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/GiGiOgre.pc
 
 %changelog
-* Thu Jul 28 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-2
+* Thu Jul 28 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-2.R
 - added missing build requires (libpng, DevIL, libjpeg)
 * Wed Jul 27 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-1
 - Initial build
