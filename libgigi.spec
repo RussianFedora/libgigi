@@ -1,11 +1,17 @@
+%global svnrev 1044
+
 Name:           libgigi
 Version:        0.8.0
-Release:        4.svn1044%{?dist}.R
+Release:        5.svn%{svnrev}%{?dist}.R
 Summary:        GiGi (aka GG) is a C++ OpenGL GUI library.
 
 License:        LGPL
 URL:            http://gigi.sourceforge.net/
-Source0:        %{name}-%{version}.tar.gz
+
+# svn export -r 1044 https://gigi.svn.sourceforge.net/svnroot/gigi/trunk/GG libgigi-0.8.0-svn1044
+# tar -czvf libgigi-0.8.0-svn1044.tar.gz libgigi-0.8.0-svn1044/
+Source0:        %{name}-%{version}-svn%{svnrev}.tar.gz
+
 Patch1:         libgigi-compile-fix.patch
 Patch2:         libgigi-io-fix.patch
 Patch3:		libgigi-path-fix.patch
@@ -61,7 +67,7 @@ Development files libgigi(GiGi/GG) SDL plugin
 Development files for libgigi(GiGi/GG) Ogre plugin
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-svn%{svnrev}
 %patch1 -p1 -b .fix-compile-errors
 %patch2 -p1 -b .io-fix-error
 %patch3 -p1 -b .path-fix
@@ -105,6 +111,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/GiGiOgre.pc
 
 %changelog
+* Mon Jan 23 2012 Aleksandra Bookwar <alpha@bookwar.info> - 0.8.0-5.svn1044.R
+- Added global svnrev variable
+
 * Mon Jan 23 2012 Aleksandra Bookwar <alpha@bookwar.info> - 0.8.0-4.svn1044.R
 - Update to the svn revision 1044
 
