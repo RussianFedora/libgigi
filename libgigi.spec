@@ -1,13 +1,14 @@
 Name:           libgigi
 Version:        0.8.0
-Release:        3%{?dist}.R
+Release:        4.svn1044%{?dist}.R
 Summary:        GiGi (aka GG) is a C++ OpenGL GUI library.
 
 License:        LGPL
 URL:            http://gigi.sourceforge.net/
-Source0:        %{name}-%{version}.tar.bz2
+Source0:        %{name}-%{version}.tar.gz
 Patch1:         libgigi-compile-fix.patch
 Patch2:         libgigi-io-fix.patch
+Patch3:		libgigi-path-fix.patch
 
 BuildRequires:  boost-devel SDL-devel doxygen ogre-devel libtiff-devel
 BuildRequires:  freetype-devel libstdc++-devel gcc-c++ glibc-headers glibc-devel
@@ -63,6 +64,7 @@ Development files for libgigi(GiGi/GG) Ogre plugin
 %setup -q
 %patch1 -p1 -b .fix-compile-errors
 %patch2 -p1 -b .io-fix-error
+%patch3 -p1 -b .path-fix
 
 %build
 %cmake .
@@ -103,7 +105,10 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/GiGiOgre.pc
 
 %changelog
-* Mon Aug  1 2011 Алексей <alex@alex-desktop> - 0.8.0-3.R
+* Mon Jan 23 2012 Aleksandra Bookwar <alpha@bookwar.info> - 0.8.0-4.svn1044.R
+- Update to the svn revision 1044
+
+* Mon Aug  1 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-3.R
 - update for new ogre-library
 * Thu Jul 28 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.8.0-2.R
 - added missing build requires (libpng, DevIL, libjpeg)

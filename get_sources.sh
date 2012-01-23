@@ -1,17 +1,11 @@
 #!/bin/sh
 
-GG_NAME=libgigi
-SVN_REV=1043
+URL="https://gigi.svn.sourceforge.net/svnroot/gigi/trunk/GG"
+NAME=libgigi
+SVN_REV=1044
+VERSION=0.8.0
 
-svn co -r ${SVN_REV} https://gigi.svn.sourceforge.net/svnroot/gigi/trunk gigi
-cd gigi
 
-# Get version of gigi
-GG_VERSION=`cat GG/CMakeLists.txt | grep 'set(GIGI_VERSION' | awk '{print $2}' | sed 's|)||g'`
-GG_FULL_NAME=${GG_NAME}-${GG_VERSION}
-
-# Remove .svn
-find . -name .svn -exec rm -rf {} \; > /dev/null
-
-mv GG $GG_FULL_NAME
-tar cfjv ../${GG_FULL_NAME}.tar.bz2 $GG_FULL_NAME
+svn export -r ${SVN_REV} ${URL} ${NAME}-${VERSION}
+tar -czvf ${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}/
+rm -rf ${NAME}-${VERSION}
